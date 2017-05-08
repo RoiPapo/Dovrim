@@ -1,0 +1,17 @@
+#mainp{
+   position: absolute;
+    top: 0px;
+    right: 5px;
+}
+
+.navbar-nav > li > a, .navbar-brand {
+    padding-top:18px !important; 
+    padding-bottom:0 !important;
+    height: 60px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+}
+.navbar {min-height:28px !important;
+      margin-bottom: 0;
+      border-radius: 0;
+}
