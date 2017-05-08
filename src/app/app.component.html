@@ -2,9 +2,9 @@
 <div class="col-sm-2" id="backgroundside"></div>
 <div class="col-sm-9 text-right">
   <h1>הדיונים שלי</h1>
-  <app-run> </app-run>
-  <app-mydiscussion> </app-mydiscussion>
-  <app-newdiscussion> </app-newdiscussion>
+  <app-run *ngIf="loadedFeature === 'home'"> </app-run>
+  <app-mydiscussion *ngIf="loadedFeature === 'myDiscussion'"> </app-mydiscussion>
+  <app-newdiscussion *ngIf="loadedFeature === 'newDiscussion'"> </app-newdiscussion>
 
   
  
