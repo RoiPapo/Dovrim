@@ -20,6 +20,7 @@ import { RunComponent } from './run/run.component';
   imports: [
     BrowserModule,
     FormsModule,
+    FormsModule,
     HttpModule
   ],
   providers: [],

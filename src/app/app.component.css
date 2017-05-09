@@ -2,6 +2,13 @@
       top: 0px;
       background-color: #f1f1f1;
       height: 100vh;
-      
-      
+}
+
+.container {
+      width:70%;
+      height: calc(100vh - 62px);   
+      overflow-y: auto;
+      background-color: white;
+      box-shadow: 0 0px 5px 0 rgba(255,255,255,0.56),0 0px 12px 0 rgba(0,0,0,0.1);
+      margin: 0 15%;
 }

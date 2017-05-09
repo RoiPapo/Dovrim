@@ -1,0 +1,7 @@
+.column { 
+  -webkit-flex-direction: column-reverse; 
+  flex-direction: column-reverse; 
+  float: right;
+
+
+}

@@ -1,3 +1,32 @@
-<p>
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="col-xs-6 pull-right  ">
 
-</p>
+        <div class="form-group ">
+
+            <label for="disscussionName" style="font-size: 150%">שם הדיון</label>
+            <input type="text" id="disscussionName" class="form-control input-lg" ngModel name="disscussionName" required>
+
+            <ul class="pager pull-right">
+                <li><a (click)="addLink()">הוסף נושא+</a></li>
+            </ul>
+            <br/><br/><br/><br/>
+            <div *ngFor="let input of inputs">
+
+                <div class="form-group col-xs-4">
+                    <label>אורך בדקות</label>
+                    <input type="text" id="subjectTime" class="form-control " ngModel name="subjectTime" required>
+
+                </div>
+                <div class="form-group col-xs-8">
+                    <label>שם הנושא</label>
+                    <input type="text" id="subjectName" class="form-control " ngModel name="subjectName" required>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+    </div>
+</form>

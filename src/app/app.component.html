@@ -1,5 +1,5 @@
 <app-header (featureSelected)="onNavigate($event)"></app-header>
-<div class="col-sm-2" id="backgroundside"></div>
+<!--<div class="col-sm-2" id="backgroundside"></div>
 <div class="col-sm-9 text-right">
   <h1>הדיונים שלי</h1>
   <app-run *ngIf="loadedFeature === 'home'"> </app-run>
@@ -9,4 +9,10 @@
   
  
 </div>
-<div class="col-sm-1" id="backgroundside"></div>
+<div class="col-sm-1" id="backgroundside"></div>-->
+<div class="container">
+    <h1>הדיונים שלי</h1>
+    <app-run *ngIf="loadedFeature === 'home'"> </app-run>
+    <app-mydiscussion *ngIf="loadedFeature === 'myDiscussion'"> </app-mydiscussion>
+    <app-newdiscussion *ngIf="loadedFeature === 'newDiscussion'"> </app-newdiscussion>
+</div>
