@@ -1,32 +1,41 @@
-<form (ngSubmit)="onSubmit()" #f="ngForm">
+<form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
     <div class="col-xs-6 pull-right  ">
 
         <div class="form-group ">
 
             <label for="disscussionName" style="font-size: 150%">שם הדיון</label>
-            <input type="text" id="disscussionName" class="form-control input-lg" ngModel name="disscussionName" required>
-
+            <input type="text" class="form-control" formControlName="discussionName">
+            <small *ngIf="!myForm.controls.discussionName.valid" class="text-danger">
+     
+            </small>
             <ul class="pager pull-right">
                 <li><a (click)="addLink()">הוסף נושא+</a></li>
             </ul>
             <br/><br/><br/><br/>
-            <div *ngFor="let input of inputs">
-
-                <div class="form-group col-xs-4">
-                    <label>אורך בדקות</label>
-                    <input type="text" id="subjectTime" class="form-control " ngModel name="subjectTime" required>
-
+            <div formArrayName="subjects">
+                <div *ngFor="let subject of myForm.controls.subjects.controls; let i=index">
+                   
+                    <span class="glyphicon glyphicon-remove " *ngIf="myForm.controls.subjects.controls.length > 1" (click)="removesubjects(i)"></span>
+                    
+                    <div [formGroupName]="i">
+                        <div class="form-group col-xs-4">
+                            <label>אורך בדקות</label>
+                            <input type="text" class="form-control" formControlName="subjectTime">
+                            <small [hidden]="myForm.controls.subjects.controls[i].controls.subjectTime.valid" class="text-danger">
+                                        Street is required
+                </small>
+                        </div>
+                        <div class="form-group col-xs-8">
+                            <label>שם הנושא</label>
+                            <input type="text" class="form-control" formControlName="subjectName" >
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group col-xs-8">
-                    <label>שם הנושא</label>
-                    <input type="text" id="subjectName" class="form-control " ngModel name="subjectName" required>
-                </div>
-
 
             </div>
         </div>
 
 
-        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+   <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button>
     </div>
 </form>
