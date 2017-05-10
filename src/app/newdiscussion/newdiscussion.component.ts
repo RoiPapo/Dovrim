@@ -14,7 +14,7 @@ export class NewdiscussionComponent implements OnInit {
     myForm: FormGroup;
     constructor(private _fb: FormBuilder) { }
 
-     ngOnInit() {
+    ngOnInit() {
         this.myForm = this._fb.group({
             discussionName: ['', [Validators.required, Validators.minLength(3)]],
             subjects: this._fb.array([
@@ -23,7 +23,7 @@ export class NewdiscussionComponent implements OnInit {
         });
     }
 
-     initSubject() {
+    initSubject() {
         return this._fb.group({
             subjectName: ['', Validators.required],
             subjectTime: ['']
@@ -40,12 +40,24 @@ export class NewdiscussionComponent implements OnInit {
         control.removeAt(i);
     }
     save(model: FormGroup) {
-        // call API to save
-        // ...
-        console.log(model.value);
+
+
+        var datafordb = {
+            discussionName: model.value.discussionName,
+            subject: model.value.subjects
+        }
+
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:3000/api/status');   //server name patch papo
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        xhr.send(JSON.stringify(datafordb));
+
+
     }
 
-   
+
 
     // submiting() { // creates json to please the lord node
     //     var discussionName = "cat";
