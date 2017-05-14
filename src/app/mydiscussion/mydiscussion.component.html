@@ -1,3 +1,17 @@
-<p>
-  mydiscussion works!
-</p>
+<table class="table-fill">
+<thead>
+<tr>
+
+<th class="text-left">שם הדיון</th>
+<th class="text-left">פעולות</th>
+</tr>
+</thead>
+<tbody class="table-hover">
+<tr *ngFor="let discussion of discussions">
+<td class="text-left">{{discussion.discussionName}}</td>
+<td class="text-left">$ 50,000.00</td>
+</tr>
+
+
+</tbody>
+</table>
