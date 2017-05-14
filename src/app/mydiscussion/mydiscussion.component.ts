@@ -36,4 +36,10 @@ export class MydiscussionComponent implements OnInit {
 
   }
 
+  removeDiscussion(i) {
+    //todo
+  }
+  editDiscussion(i) {
+    //todo
+  }
 }

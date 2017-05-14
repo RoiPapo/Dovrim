@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from '../subject.model';
 import { Discussion } from '../discussion.model'
+import { RequestService } from '../requests.service';
 
 @Component({
     selector: 'app-newdiscussion',
@@ -12,7 +13,7 @@ export class NewdiscussionComponent implements OnInit {
     discussionName: string;
     inputs: Subject[] = [];
     myForm: FormGroup;
-    constructor(private _fb: FormBuilder) { }
+    constructor(private _fb: FormBuilder, private requestService: RequestService) { }
 
     ngOnInit() {
         this.myForm = this._fb.group({
@@ -40,21 +41,11 @@ export class NewdiscussionComponent implements OnInit {
         control.removeAt(i);
     }
     save(model: FormGroup) {
-
-
         var datafordb = {
             discussionName: model.value.discussionName,
             subject: model.value.subjects
         }
-
-
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:3000/api/status');   //server name patch papo
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-        xhr.send(JSON.stringify(datafordb));
-
-
+        this.requestService.postDiscussion(datafordb);
     }
 
 
