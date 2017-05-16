@@ -10,15 +10,16 @@
     <tr *ngFor="let discussion of discussions; let i = index">
       <td class="text-right">{{discussion.discussionName}}</td>
       <td class="text-left">
-        <a href="editDiscussion(i)">
-          <span class="glyphicon glyphicon-pencil"></span>
-        </a> 
-        	&nbsp;	&nbsp;
-        <a href="removeDiscussion(i)">
+        <a (click)="runDiscussion(i)">
+          <span class="glyphicon glyphicon-play"></span>
+        </a> &nbsp; 
+        <a (click)="removeDiscussion(i)">
          <span class="glyphicon glyphicon-remove"></span>
+        </a> &nbsp; 
+        <a (click)="editDiscussion(i)">
+         <span class="glyphicon glyphicon-pencil"></span>
         </a>
-
-
+<a href="#" (click)="onSelect('run')">דף בית</a>
       </td>
     </tr>
 

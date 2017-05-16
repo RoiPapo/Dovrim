@@ -10,6 +10,7 @@ import { EmitterService } from '../emitter.service';
   styleUrls: ['./mydiscussion.component.css']
 })
 export class MydiscussionComponent implements OnInit {
+  
   discussions: Discussion[];
 
   constructor(private requestService: RequestService) { }
@@ -42,4 +43,9 @@ export class MydiscussionComponent implements OnInit {
   editDiscussion(i) {
     //todo
   }
+  runDiscussion(i) {
+console.log(this.discussions[i]);
+  }
+
+  
 }

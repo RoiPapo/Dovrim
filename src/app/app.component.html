@@ -12,7 +12,8 @@
 <div class="col-sm-1" id="backgroundside"></div>-->
 <div class="container">
     <h1>הדיונים שלי</h1>
-    <app-run *ngIf="loadedFeature === 'home'"> </app-run>
+    <app-home *ngIf="loadedFeature === 'home'"> </app-home>
     <app-mydiscussion *ngIf="loadedFeature === 'myDiscussion'"> </app-mydiscussion>
     <app-newdiscussion *ngIf="loadedFeature === 'newDiscussion'"> </app-newdiscussion>
+    <app-run *ngIf="loadedFeature === 'run'"> </app-run>
 </div>

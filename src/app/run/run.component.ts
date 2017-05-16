@@ -10,6 +10,7 @@ export class RunComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+   
   }
 
 }

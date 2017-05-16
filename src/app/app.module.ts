@@ -10,6 +10,7 @@ import { NewdiscussionComponent } from './newdiscussion/newdiscussion.component'
 import { RunComponent } from './run/run.component';
 import { EmitterService } from './emitter.service';
 import { RequestService } from './requests.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RequestService } from './requests.service';
     HeaderComponent,
     MydiscussionComponent,
     NewdiscussionComponent,
-    RunComponent
+    RunComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
