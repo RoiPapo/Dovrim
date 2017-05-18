@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Discussion } from '../discussion.model';
 import { RequestService } from '../requests.service';
@@ -16,6 +16,11 @@ export class MydiscussionComponent implements OnInit {
   constructor(private requestService: RequestService) { }
 
 
+@Output() selectedDiscussion = new EventEmitter<Discussion>();
+
+  onSelect(discussionNum:number) {
+    this.selectedDiscussion.emit(this.discussions[discussionNum]);
+  }
 
 
 

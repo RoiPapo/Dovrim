@@ -1,3 +1,4 @@
+<div style="padding-right:2%"><h1>הדיונים שלי</h1>
 <table class="table-fill">
   <thead>
     <tr>
@@ -12,17 +13,18 @@
       <td class="text-left">
         <a (click)="runDiscussion(i)">
           <span class="glyphicon glyphicon-play"></span>
-        </a> &nbsp; 
+        </a> &nbsp;
         <a (click)="removeDiscussion(i)">
          <span class="glyphicon glyphicon-remove"></span>
-        </a> &nbsp; 
+        </a> &nbsp;
         <a (click)="editDiscussion(i)">
          <span class="glyphicon glyphicon-pencil"></span>
         </a>
-<a href="#" (click)="onSelect('run')">דף בית</a>
+        <a href="#" (click)="onSelect(i)">דף בית</a>
       </td>
     </tr>
 
 
   </tbody>
 </table>
+</div>
