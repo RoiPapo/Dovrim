@@ -22,18 +22,18 @@ export class RunComponent implements OnInit {
   }
 
   totalDiscussionTime(discussion: Discussion) {
-    let counter: number;
+    let counter: number=0;
     let subjectarr: Subject[];
     subjectarr = discussion.subject;
 
     for (let subject of subjectarr) {
 
-      counter += subject.subjectTime;
+      counter +=+ subject.subjectTime;
 
 
     }
     console.log(counter);
-    // look and subject and subjects on server DB and stuff
+   
   }
 
 }
