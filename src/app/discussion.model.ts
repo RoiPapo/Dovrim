@@ -2,11 +2,11 @@ import { Subject } from './subject.model';
 
 export class Discussion {
     name: string;
-    subjects:Subject[];
+    subject:Subject[];
     
-    constructor(name: string, subjects: Subject[]) {
+    constructor(name: string, subject: Subject[]) {
         this.name = name;
-        this.subjects = subjects;
+        this.subject = subject;
     }
 
 

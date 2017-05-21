@@ -1,10 +1,10 @@
 export class Subject {
-    name: string;
-    time: number;
+    subjectName: string;
+    subjectTime: number;
 
     constructor(name: string, time: number) {
-        this.name = name;
-        this.time = time;
+        this.subjectName = name;
+        this.subjectTime = time;
     }
 
 

@@ -1,4 +1,6 @@
-<div style="padding-right:2%"><h1>יצירת דיון חדש</h1></div>
+<div style="padding-right:2%">
+    <h1>יצירת דיון חדש</h1>
+</div>
 <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
     <div class="col-xs-6 pull-right  ">
 
@@ -15,13 +17,13 @@
             <br/><br/><br/><br/>
             <div formArrayName="subjects">
                 <div *ngFor="let subject of myForm.controls.subjects.controls; let i=index">
-                   
-                    
-                    
+
+
+
                     <div [formGroupName]="i">
                         <div class="form-group col-xs-4">
                             <label>אורך בדקות</label>
-                                                        <span class="glyphicon glyphicon-remove " *ngIf="myForm.controls.subjects.controls.length > 1" (click)="removesubjects(i)"></span>
+                            <span class="glyphicon glyphicon-remove " *ngIf="myForm.controls.subjects.controls.length > 1" (click)="removesubjects(i)"></span>
                             <input type="text" class="form-control" formControlName="subjectTime">
                             <small [hidden]="myForm.controls.subjects.controls[i].controls.subjectTime.valid" class="text-danger">
                                         Street is required
@@ -29,7 +31,7 @@
                         </div>
                         <div class="form-group col-xs-8">
                             <label>שם הנושא</label>
-                            <input type="text" class="form-control" formControlName="subjectName" >
+                            <input type="text" class="form-control" formControlName="subjectName">
                         </div>
                     </div>
                 </div>
@@ -38,6 +40,6 @@
         </div>
 
 
-   <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button>
+        <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button>
     </div>
 </form>

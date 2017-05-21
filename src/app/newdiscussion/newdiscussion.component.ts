@@ -43,7 +43,7 @@ export class NewdiscussionComponent implements OnInit {
     save(model: FormGroup) {
         var datafordb = {
             discussionName: model.value.discussionName,
-            subjects: model.value.subjects
+            subject: model.value.subjects
         }
         this.requestService.postDiscussion(datafordb);
     }
