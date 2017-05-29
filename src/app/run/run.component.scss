@@ -36,6 +36,7 @@ float: right
 
 .demo .large-header {
    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
+   
 }
 
 .main-title {
@@ -46,30 +47,39 @@ margin: auto;
 
 
 }
+.sub-title {
+   //position: absolute;
+text-align: center;
+color: #F9F1E9;
+font-size: 40px;
+margin: auto;
+
+
+}
 .main-title2 {
    //position: absolute;
 text-align: center;
 color: #F9F1E9;
 margin: auto;
-font-size: 80px;
+font-size: 90px;
+font-weight: bold;
 
 
 }
 .demo .main-title {
    text-transform: uppercase;
-   font-size: 6.0em;
+   font-size: 4.5em;
    letter-spacing: 0.1em;
 }
 
 .main-title .thin {
    font-weight: 200;
 }
-@media only screen and (max-width: 768px) {
-   .demo .main-title {
-      font-size: 3em;
-   }
+
+.container2{
+ width: 100%;
+overflow-x: hidden;
+padding-right: 20px;
+ 
 }
 
-.container{
-     margin-right: 7px ;
-}

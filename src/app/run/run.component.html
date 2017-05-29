@@ -1,11 +1,19 @@
 <div class=" demo" id="the header pannel">
     <div id="large-header" class="large-header">
         <h1 class="main-title">{{discussionNow.discussionName}}</h1>
-     <h1 class="main-title2">00:00</h1>
+        <h1 class="main-title2">{{secondsToMinutes(presentedTime)}}</h1>
     </div>
 </div>
-<div class="container">
-<div class="glyphicon glyphicon-chevron-left greenytitle2"></div>
-<div class="greenytitle" id="current subject">{{discussionNow.subject[0].subjectName}}</div>
+<a href="#" (click)="play()">play</a>
+<a href="#" (click)="skip(0)">Skip</a>
+<a href="#" (click)="pause()">Pause</a>
+<div class="container2">
+    <div class="glyphicon glyphicon-chevron-left greenytitle2"></div>
+   <div class="greenytitle" id="current subject">{{discussionNow.subject[clockPointer].subjectName}}</div>
+    <br/><br/><br/><br/><br/>
+    <table style=" font-size: 24px;">
+    <tr *ngFor="let subject of subjecstArr; let i = index">
+       <td style="padding-left: 20px;">{{i+1}}. {{discussionNow.subject[i].subjectName}} </td><td> <input style="width:50px" type="text" value="{{discussionNow.subject[i].subjectTime}}"></td>
+    </tr>
+    </table>
 </div>
- 
