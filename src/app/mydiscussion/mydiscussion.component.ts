@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Discussion } from '../discussion.model';
 import { RequestService } from '../requests.service';
 import { EmitterService } from '../emitter.service';
+import { DiscussionPasserService } from '../discussionPasser.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mydiscussion',
@@ -10,28 +12,34 @@ import { EmitterService } from '../emitter.service';
   styleUrls: ['./mydiscussion.component.css']
 })
 export class MydiscussionComponent implements OnInit {
-  
+
   discussions: Discussion[];
 
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService,
+   private discussionPasserService:DiscussionPasserService,
+   private router:Router
+   ) { 
+
+    // this.discussionPasserService.discussionPicked.subscribe(
+    //   (selectedDiscussion: Discussion) => console.log(selectedDiscussion));
+   }
 
 
-@Output() selectedDiscussion = new EventEmitter<Discussion>();
-
-  onSelect(discussionNum:number) {
-    this.selectedDiscussion.emit(this.discussions[discussionNum]);
-  }
+  // @Output() selectedDiscussionToRun = new EventEmitter<Discussion>();
+  // @Output() selectedDiscussionToEdit = new EventEmitter<{discussion:Discussion,flag:boolean}>();
 
 
 
   ngOnInit() {
     this.loadDiscussions();
+
   }
 
   loadDiscussions() {// get all discussions
     this.requestService.getDiscussions()
       .subscribe(
       discussions => this.discussions = discussions,
+      
       // discussions => console.log(discussions),
       err => {
         console.log(err)
@@ -42,15 +50,18 @@ export class MydiscussionComponent implements OnInit {
 
   }
 
+  runDiscussion(discussionNum: number) {
+    // this.selectedDiscussionToRun.emit(this.discussions[discussionNum]);
+    this.discussionPasserService.discussionPicked.emit(this.discussions[discussionNum]);
+    this.router.navigate(['run']);
+  }
   removeDiscussion(i) {
     //todo
   }
-  editDiscussion(i) {
-    //todo
-  }
-  runDiscussion(i) {
-console.log(this.discussions[i]);
+  editDiscussion(discussionNum: number) {
+    // this.selectedDiscussionToEdit.emit({discussion:this.discussions[discussionNum],flag:true});
   }
 
-  
+
+
 }

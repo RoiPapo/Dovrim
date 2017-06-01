@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from '../subject.model';
 import { Discussion } from '../discussion.model'
 import { RequestService } from '../requests.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-newdiscussion',
@@ -10,12 +11,20 @@ import { RequestService } from '../requests.service';
     styleUrls: ['./newdiscussion.component.css']
 })
 export class NewdiscussionComponent implements OnInit {
+    @Input("selectedDiscussion") discussionNow: Discussion;
+    @Input("editFlag") editFlag: boolean;
+
     discussionName: string;
     inputs: Subject[] = [];
     myForm: FormGroup;
-    constructor(private _fb: FormBuilder, private requestService: RequestService) { }
+    editMode: boolean = false;
+
+
+    constructor(private _fb: FormBuilder, private requestService: RequestService,private router:Router) { }
 
     ngOnInit() {
+        if(this.editFlag==true){this.editMode=true;}
+        console.log(this.editFlag);
         this.myForm = this._fb.group({
             discussionName: ['', [Validators.required, Validators.minLength(3)]],
             subjects: this._fb.array([
@@ -46,32 +55,10 @@ export class NewdiscussionComponent implements OnInit {
             subject: model.value.subjects
         }
         this.requestService.postDiscussion(datafordb);
+        this.router.navigate(['/discussions']);
     }
 
 
 
-    // submiting() { // creates json to please the lord node
-    //     var discussionName = "cat";
-    //     var textarr = [];
-    //     var subject = [];
-    //     var timetaker = this.getValuesFromContainer().clocksarr;
-    //     for (var i = 0; i < this.texts.length; i++) {
-    //         textarr.push(this.texts.item(i).innerHTML);
-    //     }
-
-    //     for (var i = 0; i < textarr.length; i++) {
-    //         subject.push({ subjectName: textarr[i], subjectTime: timetaker[i] })
-    //     }
-    //     var datafordb = {
-    //         discussionName: discussionName,
-    //         subject: subject
-    //     }
-
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open('POST', 'http://localhost:3000/api/status');   //server name patch papo
-    //     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-    //     xhr.send(JSON.stringify(datafordb));
-
-    // }
 
 }

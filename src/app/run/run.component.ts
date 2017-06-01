@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Discussion } from '../discussion.model'
 import { Subject } from '../subject.model'
+import { DiscussionPasserService } from '../discussionPasser.service';
 
 @Component({
   selector: 'app-run',
@@ -8,22 +9,27 @@ import { Subject } from '../subject.model'
   styleUrls: ['./run.component.scss']
 })
 export class RunComponent implements OnInit {
-  @Input("playingDiscussion") discussionNow: Discussion;
+  //@Input("selectedDiscussion") discussionNow: Discussion;
+  discussionNow: Discussion = { name: "", subject: [] };
   subjNum: number;
   clockPointer: number = 0;
   subjecstArr: Subject[];
   clocksArr: number[] = [];
   presentedTime: number = 0;
   isPaused: boolean = false;
-  constructor() { }
 
-
+  constructor(private discussionPasserService: DiscussionPasserService, ) {
+  }
 
 
   ngOnInit() {
-    this.logData();
-    this.decapsulation(this.discussionNow);
-    this.totalDiscussionTime(this.discussionNow);
+    this.discussionPasserService.discussionPicked.subscribe(
+      (selectedDiscussion: Discussion) => {
+      this.discussionNow = selectedDiscussion;
+        this.decapsulation(this.discussionNow);
+        this.totalDiscussionTime(this.discussionNow);
+      });
+    // this.logData();     
   }
 
   logData() {
@@ -85,12 +91,12 @@ export class RunComponent implements OnInit {
 
   skip(input) {
     this.presentedTime = input;
-    if (this.isPaused==true){this.clockPointer++}
+    if (this.isPaused == true) { this.clockPointer++ }
   }
 
   pause() {
     this.isPaused = true;
-    this.clocksArr[this.clockPointer] = (this.presentedTime / 60) ;
+    this.clocksArr[this.clockPointer] = (this.presentedTime / 60);
   }
 
 
