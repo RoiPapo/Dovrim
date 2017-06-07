@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Discussion } from '../discussion.model'
 import { Subject } from '../subject.model'
 import { DiscussionPasserService } from '../discussionPasser.service';
+import { RequestService } from '../requests.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-run',
@@ -10,7 +12,7 @@ import { DiscussionPasserService } from '../discussionPasser.service';
 })
 export class RunComponent implements OnInit {
   //@Input("selectedDiscussion") discussionNow: Discussion;
-  discussionNow: Discussion = { name: "", subject: [] };
+  discussionNow: Discussion = { _id: null, name: "", subject: [] };
   subjNum: number;
   clockPointer: number = 0;
   subjecstArr: Subject[];
@@ -18,23 +20,54 @@ export class RunComponent implements OnInit {
   presentedTime: number = 0;
   isPaused: boolean = false;
 
-  constructor(private discussionPasserService: DiscussionPasserService, ) {
-  }
+  constructor(private requestService: RequestService,
+    private discussionPasserService: DiscussionPasserService,
+    private activatedRoute: ActivatedRoute) { }
 
 
   ngOnInit() {
-    this.discussionPasserService.discussionPicked.subscribe(
-      (selectedDiscussion: Discussion) => {
-      this.discussionNow = selectedDiscussion;
+    // subscribe to router event
+    this.activatedRoute.params.subscribe((params: Params) => {
+      let discusisonId = params['id'];
+      this.getTheDiscussionFromDb(discusisonId);
+    });
+
+
+    // this.discussionPasserService.discussionPicked.subscribe(
+    //   (selectedDiscussion: Discussion) => {
+    //   this.discussionNow = selectedDiscussion;
+    //     this.decapsulation(this.discussionNow);
+    //     this.totalDiscussionTime(this.discussionNow);
+    //   });
+    // // this.logData();     
+  }
+
+  getTheDiscussionFromDb(id) {
+    this.requestService.getSpesificDiscussion(id)
+      .subscribe(
+      discussion => {
+        this.discussionNow = discussion;
         this.decapsulation(this.discussionNow);
         this.totalDiscussionTime(this.discussionNow);
-      });
-    // this.logData();     
+        // console.log(this.discussionNow);
+      },
+
+      //  discussions => console.log(discussions),
+      err => {
+        console.log(err)
+
+      }
+
+      )
+
+
   }
 
   logData() {
     console.log(this.discussionNow);
   }
+
+
 
   decapsulation(discussion: Discussion) { // just a discussion parse to "easy to work with" varriebles
     this.subjNum = discussion.subject.length;

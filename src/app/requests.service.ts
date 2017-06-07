@@ -14,9 +14,16 @@ export class RequestService {
     constructor(private http: Http) { }
     // private instance variable to hold base url
     private discussionsUrl = 'http://localhost:3000/api/all';
+    private discussionById = 'http://localhost:3000/api/status';
 
     getDiscussions(): Observable<Discussion[]> {
         return this.http.get(this.discussionsUrl)//use options later for "per user get"
+            .map((res: Response) => res.json()) // parse the responce to javascript object
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
+    }
+
+    getSpesificDiscussion(id:string): Observable<Discussion> {
+        return this.http.get(this.discussionById+'/'+id)//use options later for "per user get"
             .map((res: Response) => res.json()) // parse the responce to javascript object
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
     }
@@ -27,6 +34,12 @@ export class RequestService {
         xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         xhr.send(JSON.stringify(datafordb));
 
+    }
+
+    deleteDiscussion(id:string) : Observable<string>{
+        return this.http.delete(`${this.discussionById}/${id}`) // ...using Delete request
+                         .map((res:Response) => res.text()) // ...and calling .json() on the response to return data
+                         .catch((error:any) => Observable.throw(error || 'Server error')); //...errors if any
     }
 
 }

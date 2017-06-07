@@ -1,4 +1,4 @@
-<div *ngIf="!discussionNow; else discussionPanel">loading</div>
+<div *ngIf="!discussionNow._id; else discussionPanel">loading</div>
 <ng-template #discussionPanel>
     <div class=" demo" id="the header pannel">
         <div id="large-header" class="large-header">
@@ -6,9 +6,9 @@
             <h1 class="main-title2">{{secondsToMinutes(presentedTime)}}</h1>
         </div>
     </div>
-    <a href="#" (click)="play()">play</a>
-    <a href="#" (click)="skip(0)">Skip</a>
-    <a href="#" (click)="pause()">Pause</a>
+    <a (click)="play()">play</a>
+    <a (click)="skip(0)">Skip</a>
+    <a (click)="pause()">Pause</a>
     <div class="container2">
         <div class="glyphicon glyphicon-chevron-left greenytitle2"></div>
         <div class="greenytitle" id="current subject">{{discussionNow.subject[clockPointer].subjectName}}</div>

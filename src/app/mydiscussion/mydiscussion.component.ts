@@ -52,11 +52,19 @@ export class MydiscussionComponent implements OnInit {
 
   runDiscussion(discussionNum: number) {
     // this.selectedDiscussionToRun.emit(this.discussions[discussionNum]);
-    this.discussionPasserService.discussionPicked.emit(this.discussions[discussionNum]);
-    this.router.navigate(['run']);
+    // this.discussionPasserService.discussionPicked.emit(this.discussions[discussionNum]);
+    this.router.navigate(['run',this.discussions[discussionNum]._id]);
   }
-  removeDiscussion(i) {
-    //todo
+  removeDiscussion(discussionNum: number) {
+    
+   this.requestService.deleteDiscussion(this.discussions[discussionNum]._id).subscribe(
+     flag=>{ this.loadDiscussions();
+
+
+     }
+
+     
+   )
   }
   editDiscussion(discussionNum: number) {
     // this.selectedDiscussionToEdit.emit({discussion:this.discussions[discussionNum],flag:true});

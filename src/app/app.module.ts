@@ -16,7 +16,7 @@ import {Routes, RouterModule} from "@angular/router";
 const appRoutes: Routes=[
   {path:'',component:HomeComponent},
   {path:'discussions',component:MydiscussionComponent},
-  {path:'run',component:RunComponent},
+  {path:'run/:id',component:RunComponent},
   {path:'create',component:NewdiscussionComponent}
   ];
 
