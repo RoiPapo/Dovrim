@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { Discussion } from '../discussion.model'
 import { Subject } from '../subject.model'
 import { DiscussionPasserService } from '../discussionPasser.service';
@@ -33,6 +33,7 @@ export class RunComponent implements OnInit {
     });
 
 
+
     // this.discussionPasserService.discussionPicked.subscribe(
     //   (selectedDiscussion: Discussion) => {
     //   this.discussionNow = selectedDiscussion;
@@ -41,6 +42,7 @@ export class RunComponent implements OnInit {
     //   });
     // // this.logData();     
   }
+
 
   getTheDiscussionFromDb(id) {
     this.requestService.getSpesificDiscussion(id)
@@ -130,6 +132,12 @@ export class RunComponent implements OnInit {
   pause() {
     this.isPaused = true;
     this.clocksArr[this.clockPointer] = (this.presentedTime / 60);
+  }
+
+  update(i,event) {
+    if(event.target.value!==this.clocksArr[i]){
+    this.clocksArr[i]=event.target.value;
+    }
   }
 
 

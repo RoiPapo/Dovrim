@@ -16,7 +16,7 @@
         <table style=" font-size: 24px;">
             <tr *ngFor="let subject of subjecstArr; let i = index">
                 <td style="padding-left: 20px;">{{i+1}}. {{discussionNow.subject[i].subjectName}} </td>
-                <td> <input style="width:50px" type="text" value="{{discussionNow.subject[i].subjectTime}}"></td>
+                <td> <input (blur)=update(i,$event) id="TimeInput" style="width:50px" type="text" value="{{discussionNow.subject[i].subjectTime}}"></td>
             </tr>
         </table>
     </div>
