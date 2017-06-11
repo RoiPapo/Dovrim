@@ -3,6 +3,6 @@ import {Discussion} from './discussion.model';
 import {Subject} from './subject.model';
 @Injectable()
 export class DiscussionPasserService {
-    discussionPicked= new EventEmitter<Discussion>();
+    discussionPicked= new EventEmitter<string>();
 
 }

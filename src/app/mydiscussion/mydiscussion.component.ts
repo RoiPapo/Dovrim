@@ -67,7 +67,8 @@ export class MydiscussionComponent implements OnInit {
    )
   }
   editDiscussion(discussionNum: number) {
-    // this.selectedDiscussionToEdit.emit({discussion:this.discussions[discussionNum],flag:true});
+    this.discussionPasserService.discussionPicked.emit(this.discussions[discussionNum].name);
+    this.router.navigate(['edit',this.discussions[discussionNum]._id]);
   }
 
 

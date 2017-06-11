@@ -17,6 +17,7 @@ const appRoutes: Routes=[
   {path:'',component:HomeComponent},
   {path:'discussions',component:MydiscussionComponent},
   {path:'run/:id',component:RunComponent},
+  {path:'edit/:id',component:NewdiscussionComponent},
   {path:'create',component:NewdiscussionComponent}
   ];
 

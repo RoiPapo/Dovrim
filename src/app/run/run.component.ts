@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { Discussion } from '../discussion.model'
 import { Subject } from '../subject.model'
-import { DiscussionPasserService } from '../discussionPasser.service';
 import { RequestService } from '../requests.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -21,7 +20,6 @@ export class RunComponent implements OnInit {
   isPaused: boolean = false;
 
   constructor(private requestService: RequestService,
-    private discussionPasserService: DiscussionPasserService,
     private activatedRoute: ActivatedRoute) { }
 
 
@@ -51,18 +49,10 @@ export class RunComponent implements OnInit {
         this.discussionNow = discussion;
         this.decapsulation(this.discussionNow);
         this.totalDiscussionTime(this.discussionNow);
-        // console.log(this.discussionNow);
       },
-
-      //  discussions => console.log(discussions),
       err => {
         console.log(err)
-
-      }
-
-      )
-
-
+      })
   }
 
   logData() {
@@ -134,9 +124,9 @@ export class RunComponent implements OnInit {
     this.clocksArr[this.clockPointer] = (this.presentedTime / 60);
   }
 
-  update(i,event) {
-    if(event.target.value!==this.clocksArr[i]){
-    this.clocksArr[i]=event.target.value;
+  update(i, event) {
+    if (event.target.value !== this.clocksArr[i]) {
+      this.clocksArr[i] = event.target.value;
     }
   }
 
