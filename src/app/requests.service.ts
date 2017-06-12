@@ -28,11 +28,12 @@ export class RequestService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
     }
 
-    postDiscussion(datafordb) {
+    postDiscussion(datafordb):Observable<string> {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'http://localhost:3000/api/status');   //server name patch papo
         xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         xhr.send(JSON.stringify(datafordb));
+        return Observable.of("done");
 
     }
 

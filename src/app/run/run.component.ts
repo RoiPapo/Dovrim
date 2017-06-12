@@ -11,7 +11,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class RunComponent implements OnInit {
   //@Input("selectedDiscussion") discussionNow: Discussion;
-  discussionNow: Discussion = { _id: null, name: "", subject: [] };
+  discussionNow: Discussion = { _id: null, discussionName: "", subject: [] };
   subjNum: number;
   clockPointer: number = 0;
   subjecstArr: Subject[];

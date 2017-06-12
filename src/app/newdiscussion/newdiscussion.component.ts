@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input , AfterViewChecked} from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from '../subject.model';
 import { Discussion } from '../discussion.model'
@@ -17,6 +17,7 @@ export class NewdiscussionComponent implements OnInit {
     discussionName: string;
     inputs: Subject[] = [];
     myForm: FormGroup;
+    urlParams: string;
     editMode: boolean = false;
 
 
@@ -32,9 +33,9 @@ export class NewdiscussionComponent implements OnInit {
 
         this.activatedRoute.params.subscribe((params: Params) => {
             if (params.id) {
-                console.log("edit");
-            let discusisonId = params['id'];
-            this.getTheDiscussionFromDb(discusisonId);
+                this.urlParams = params['id'];
+                let discusisonId = params['id'];
+                this.getTheDiscussionFromDb(discusisonId);
             }
         });
 
@@ -44,6 +45,7 @@ export class NewdiscussionComponent implements OnInit {
                 this.initSubject(),
             ])
         });
+
     }
 
 
@@ -51,18 +53,14 @@ export class NewdiscussionComponent implements OnInit {
         this.requestService.getSpesificDiscussion(id)
             .subscribe(
             discussion => {
-                console.log(discussion);
-                // this.discussionNow = discussion;
+                this.discussionNow = discussion;
+                this.injector(discussion.subject.length)
+                this.editMode = true;
             },
             err => {
                 console.log(err)
             })
     }
-
-    logData() {
-        console.log(this.discussionNow);
-    }
-
 
     initSubject() {
         return this._fb.group({
@@ -85,10 +83,22 @@ export class NewdiscussionComponent implements OnInit {
             discussionName: model.value.discussionName,
             subject: model.value.subjects
         }
-        this.requestService.postDiscussion(datafordb);
-        this.router.navigate(['/discussions']);
+        if (this.editMode) {
+            datafordb["id"] = this.urlParams;
+        }
+        this.requestService.postDiscussion(datafordb).subscribe((done: string)=> {
+            console.log(done);
+               this.router.navigate(['/discussions']);
+     });
     }
 
+    injector(subjNumber: number) {
+        for (let i = 0; i < subjNumber - 1; i++) {
+            this.addLink();
+        }
+        // this.myForm.setValue({ discussionName: 'talala', subjects: [{ subjectName: "shon", subjectTime: "50" }, { subjectName: "shon", subjectTime: "50" }, { subjectName: "shon", subjectTime: "50" }] });
+        this.myForm.setValue({ discussionName: this.discussionNow.discussionName, subjects: this.discussionNow.subject });
+    }
 
 
 

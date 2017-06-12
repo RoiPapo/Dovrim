@@ -32,8 +32,9 @@ export class MydiscussionComponent implements OnInit {
 
   ngOnInit() {
     this.loadDiscussions();
-
   }
+
+
 
   loadDiscussions() {// get all discussions
     this.requestService.getDiscussions()
@@ -67,7 +68,7 @@ export class MydiscussionComponent implements OnInit {
    )
   }
   editDiscussion(discussionNum: number) {
-    this.discussionPasserService.discussionPicked.emit(this.discussions[discussionNum].name);
+    this.discussionPasserService.discussionPicked.emit(this.discussions[discussionNum].discussionName);
     this.router.navigate(['edit',this.discussions[discussionNum]._id]);
   }
 

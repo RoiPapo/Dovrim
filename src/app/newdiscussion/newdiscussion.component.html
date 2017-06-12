@@ -39,7 +39,8 @@
             </div>
         </div>
 
-
-        <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button>
+  <div *ngIf="editMode; else newDiscussion" > <button  type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Update</button> </div>
+  <ng-template #newDiscussion> <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button> </ng-template>
+  
     </div>
 </form>
