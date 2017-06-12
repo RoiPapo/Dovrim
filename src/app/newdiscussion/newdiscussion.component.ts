@@ -1,4 +1,4 @@
-import { Component, OnInit, Input , AfterViewChecked} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from '../subject.model';
 import { Discussion } from '../discussion.model'
@@ -86,10 +86,11 @@ export class NewdiscussionComponent implements OnInit {
         if (this.editMode) {
             datafordb["id"] = this.urlParams;
         }
-        this.requestService.postDiscussion(datafordb).subscribe((done: string)=> {
-            console.log(done);
-               this.router.navigate(['/discussions']);
-     });
+        this.requestService.postDiscussion(datafordb).subscribe((saveddiscussion: string) => {
+            this.router.navigate(['/discussions']);
+        });
+
+
     }
 
     injector(subjNumber: number) {

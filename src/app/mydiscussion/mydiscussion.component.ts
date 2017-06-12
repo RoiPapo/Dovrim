@@ -4,7 +4,7 @@ import { Discussion } from '../discussion.model';
 import { RequestService } from '../requests.service';
 import { EmitterService } from '../emitter.service';
 import { DiscussionPasserService } from '../discussionPasser.service';
-import { Router } from '@angular/router';
+import { Router ,ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-mydiscussion',
@@ -17,9 +17,8 @@ export class MydiscussionComponent implements OnInit {
 
   constructor(private requestService: RequestService,
    private discussionPasserService:DiscussionPasserService,
-   private router:Router
+   private router:Router,
    ) { 
-
     // this.discussionPasserService.discussionPicked.subscribe(
     //   (selectedDiscussion: Discussion) => console.log(selectedDiscussion));
    }

@@ -7,7 +7,7 @@
         <div class="form-group ">
 
             <label for="disscussionName" style="font-size: 150%">שם הדיון</label>
-            <input type="text" class="form-control" formControlName="discussionName">
+            <input type="text" class="form-control" formControlName="discussionName" tabindex="1">
             <small *ngIf="!myForm.controls.discussionName.valid" class="text-danger">
      
             </small>
@@ -20,18 +20,18 @@
 
 
 
-                    <div [formGroupName]="i">
+                    <div [formGroupName]="i" >
                         <div class="form-group col-xs-4">
                             <label>אורך בדקות</label>
                             <span class="glyphicon glyphicon-remove " *ngIf="myForm.controls.subjects.controls.length > 1" (click)="removesubjects(i)"></span>
-                            <input type="text" class="form-control" formControlName="subjectTime">
+                            <input type="text" class="form-control" formControlName="subjectTime" tabindex="3">
                             <small [hidden]="myForm.controls.subjects.controls[i].controls.subjectTime.valid" class="text-danger">
                                         Street is required
                 </small>
                         </div>
                         <div class="form-group col-xs-8">
                             <label>שם הנושא</label>
-                            <input type="text" class="form-control" formControlName="subjectName">
+                            <input type="text" class="form-control" formControlName="subjectName" tabindex="2">
                         </div>
                     </div>
                 </div>
