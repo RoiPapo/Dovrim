@@ -97,8 +97,7 @@ export class NewdiscussionComponent implements OnInit {
         for (let i = 0; i < subjNumber - 1; i++) {
             this.addLink();
         }
-        // this.myForm.setValue({ discussionName: 'talala', subjects: [{ subjectName: "shon", subjectTime: "50" }, { subjectName: "shon", subjectTime: "50" }, { subjectName: "shon", subjectTime: "50" }] });
-        this.myForm.setValue({ discussionName: this.discussionNow.discussionName, subjects: this.discussionNow.subject });
+           this.myForm.setValue({ discussionName: this.discussionNow.discussionName, subjects: this.discussionNow.subject });
     }
 
 

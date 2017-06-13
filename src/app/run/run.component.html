@@ -13,6 +13,12 @@
         <div class="glyphicon glyphicon-chevron-left greenytitle2"></div>
         <div class="greenytitle" id="current subject">{{discussionNow.subject[clockPointer].subjectName}}</div>
         <br/><br/><br/><br/><br/>
+        <img *ngIf="isCollapsed; else closepanel" src="./assets/openEdit.png " (click)="isCollapsed = !isCollapsed">
+        <ng-template #closepanel> 
+            <img src="./assets/closeEdit.png " (click)="isCollapsed = !isCollapsed">
+             </ng-template>
+    </div>
+    <div [collapse]="isCollapsed" class="card card-block card-header">
         <table style=" font-size: 24px;">
             <tr *ngFor="let subject of subjecstArr; let i = index">
                 <td style="padding-left: 20px;">{{i+1}}. {{discussionNow.subject[i].subjectName}} </td>
@@ -20,4 +26,5 @@
             </tr>
         </table>
     </div>
+
 </ng-template>

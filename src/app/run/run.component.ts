@@ -3,6 +3,7 @@ import { Discussion } from '../discussion.model'
 import { Subject } from '../subject.model'
 import { RequestService } from '../requests.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @Component({
   selector: 'app-run',
@@ -11,6 +12,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class RunComponent implements OnInit {
   //@Input("selectedDiscussion") discussionNow: Discussion;
+  
+
+  isCollapsed:boolean = true;
   discussionNow: Discussion = { _id: null, discussionName: "", subject: [] };
   subjNum: number;
   clockPointer: number = 0;

@@ -12,6 +12,7 @@ import { RequestService } from './requests.service';
 import { DiscussionPasserService } from './discussionPasser.service';
 import { HomeComponent } from './home/home.component';
 import {Routes, RouterModule} from "@angular/router";
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 const appRoutes: Routes=[
   {path:'',component:HomeComponent},
@@ -35,7 +36,8 @@ const appRoutes: Routes=[
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    CollapseModule.forRoot()
   ],
   providers: [
     EmitterService,
