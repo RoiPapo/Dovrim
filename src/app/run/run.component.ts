@@ -12,9 +12,9 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 })
 export class RunComponent implements OnInit {
   //@Input("selectedDiscussion") discussionNow: Discussion;
-  
 
-  isCollapsed:boolean = true;
+
+  isCollapsed: boolean = true;
   discussionNow: Discussion = { _id: null, discussionName: "", subject: [] };
   subjNum: number;
   clockPointer: number = 0;
@@ -44,6 +44,8 @@ export class RunComponent implements OnInit {
     //   });
     // // this.logData();     
   }
+
+
 
 
   getTheDiscussionFromDb(id) {
@@ -134,7 +136,15 @@ export class RunComponent implements OnInit {
     }
   }
 
+  toggleTimer(event) {
+    if (event.target.checked) {
+      this.play()
+    }
+    else {
+      this.pause();
+    }
 
+  }
 
 
 }

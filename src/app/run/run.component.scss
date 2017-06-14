@@ -1,4 +1,8 @@
-
+.centering {
+    display: block;
+    margin: auto;
+    width: 370px;
+}
 
 .greenytitle
 {
@@ -26,7 +30,7 @@ float: right
 .large-header {
   // position: absolute;
    width: 100%;
-   height: 120%;
+   height: 100%;
    background: #111;
    overflow: hidden;
    background-size: cover;
@@ -61,11 +65,23 @@ margin: auto;
 text-align: center;
 color: #F9F1E9;
 margin: auto;
-font-size: 90px;
+font-size: 150px;
 font-weight: bold;
 
 
 }
+
+.main-title3 {
+   //position: absolute;
+text-align: center;
+color: #F9F1E9;
+margin: auto;
+font-size: 180px;
+font-weight: bold;
+
+
+}
+
 .demo .main-title {
    text-transform: uppercase;
    font-size: 4.5em;
@@ -83,3 +99,34 @@ padding-right: 20px;
  
 }
 
+body{margin:0; padding:0; -webkit-font-smoothing: antialiased; font-family:arial;}
+
+label{margin:0 auto;}
+
+//#main-content{display:flex; width:100vw; height:100vh; background:white; align-items:center; justify-content:center; text-align:center;}
+
+h1{font-size:14px; font-weight:400; margin:20px 0 0 0; color:#888888;}
+
+a{font-size:12px; font-weight:bold; margin-top:10px; display:inline-block; text-decoration:none; color:#008A68;}
+
+#action-button{
+  width:70px; height:70px; background:rgba(0,0,0, .7); border-radius:100%; display:flex; align-items:center; justify-content:center; padding-left:15px; box-sizing:border-box; cursor:pointer; transition:background .2s;
+  div{
+    width:0; height:0; border-left:25px solid white; border-right:10px solid transparent; border-top:15px solid transparent; border-bottom:15px solid transparent; transition:.1s border-width .1s; position:relative;
+    &:before{content:''; height:0px; width:0px; opacity:0; background:white; position:absolute; left:0; top:0; transition:.1s width .1s;}
+    &:after{content:''; height:0px; width:0px; opacity:0; background:white; position:absolute; right:0; top:0; transition:.1s width .1s;}
+  }
+  &:hover{background:rgba(0,0,0,.9);}
+}
+
+#checkbox{display:none;}
+
+#checkbox:checked + #action-button{
+  padding-left:0;
+  div{
+    border:0; width:30px; height:30px;
+    &:before{height:30px; width:10px; opacity:1;}
+    &:after{height:30px; width:10px; opacity:1;}
+  }
+}
+ 
