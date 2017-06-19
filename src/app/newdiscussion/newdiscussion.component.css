@@ -15,11 +15,27 @@
     color: #fff;
     background-color: #337ab7;
     border-color: #2e6da4;
-    margin-top:12px;
     margin-right:18px;
 }
 .glyphicon-remove:before {
-    content: "\E014";
-    padding-right: 10px;
 
+    content: "\E014";
+    margin-left: 80px
+
+}
+
+.pager{
+   margin: 0px;
+   margin-top: -8px;
+}
+
+.aligner{
+   margin-bottom:-15px;  
+}
+#timeinput{
+    width: 80px
+}
+
+#speakerinput{
+    width: 140px
 }

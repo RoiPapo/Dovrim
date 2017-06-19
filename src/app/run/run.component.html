@@ -18,8 +18,7 @@
                                     <input (change)="toggleTimer($event)" type="checkbox" id="checkbox" />
                                     <!-- Only to prevent the need to use JS to toggle the button change -->
                                     <label for="checkbox" id="action-button">
-                            
-      <div></div>
+                                  <div></div>
     </label>
                                 </div>
                             </div>
@@ -30,6 +29,8 @@
                     </tr>
                 </table>
             </div>
+            <h1 class="main-title4" id="speaker">דובר:{{discussionNow.subject[clockPointer].subjectSpeaker}}</h1>
+             <h1 class="main-title4" id="totalTime">{{totalTime}}</h1>
         </div>
     </div>
 
@@ -49,6 +50,13 @@
             <tr *ngFor="let subject of subjecstArr; let i = index">
                 <td style="padding-left: 20px;">{{i+1}}. {{discussionNow.subject[i].subjectName}} </td>
                 <td> <input (blur)=update(i,$event) id="TimeInput" style="width:50px" type="text" value="{{discussionNow.subject[i].subjectTime}}"></td>
+                <td style="padding-right: 20px;"> דובר: {{discussionNow.subject[i].subjectSpeaker}} </td>
+                <td style="padding-right: 20px;">
+                    <div class="glyphicon glyphicon-chevron-up" (click)="up(i)"></div>
+                </td>
+                <td style="padding-right: 4px;">
+                    <div class="glyphicon glyphicon-chevron-down" (click)="down(i)"></div>
+                </td>
             </tr>
         </table>
     </div>

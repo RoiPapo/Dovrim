@@ -19,10 +19,9 @@ export class RunComponent implements OnInit {
   subjNum: number;
   clockPointer: number = 0;
   subjecstArr: Subject[];
-  clocksArr: number[] = [];
   presentedTime: number = 0;
   isPaused: boolean = true;
-
+  totalTime: string ;
   constructor(private requestService: RequestService,
     private activatedRoute: ActivatedRoute) { }
 
@@ -71,8 +70,7 @@ export class RunComponent implements OnInit {
     this.subjNum = discussion.subject.length;
     this.subjecstArr = discussion.subject;
     for (let subject of this.discussionNow.subject) {
-      this.clocksArr.push(subject.subjectTime);
-      this.presentedTime = this.clocksArr[0] * 60;
+      this.presentedTime = this.subjecstArr[0].subjectTime * 60;
     }
 
   }
@@ -82,13 +80,13 @@ export class RunComponent implements OnInit {
     for (let subject of this.discussionNow.subject) {
       counter += + subject.subjectTime;
     }
-    console.log("this discussion long is: " + counter + " minutes");
+    this.totalTime="אורך הדיון: " + Math.round(counter) + " דקות";
   }
 
   play() {
     let that = this;
     this.isPaused = false;
-    this.presentedTime = this.clocksArr[this.clockPointer] * 60;
+    this.presentedTime = Math.round(this.subjecstArr[this.clockPointer].subjectTime * 60);
     var interval = setInterval(function () {
       if (that.isPaused == true) {
         clearInterval(interval);
@@ -121,23 +119,24 @@ export class RunComponent implements OnInit {
   }
 
   skip(input) {
-    if (this.clocksArr[this.clockPointer + 1]) {
+    if (this.subjecstArr[this.clockPointer + 1]) {
       this.presentedTime = input;
       if (this.isPaused == true) {
         this.clockPointer++;
-        this.presentedTime = this.clocksArr[this.clockPointer] * 60;
+        this.presentedTime = this.subjecstArr[this.clockPointer].subjectTime * 60;
       }
     }
   }
 
   pause() {
     this.isPaused = true;
-    this.clocksArr[this.clockPointer] = (this.presentedTime / 60);
+    this.subjecstArr[this.clockPointer].subjectTime = Math.floor((this.presentedTime / 60)*100)/100;
+
   }
 
   update(i, event) {
-    if (event.target.value !== this.clocksArr[i]) {
-      this.clocksArr[i] = event.target.value;
+    if (event.target.value !== this.subjecstArr[i].subjectTime) {
+      this.subjecstArr[i].subjectTime = event.target.value;
     }
   }
 
@@ -148,7 +147,21 @@ export class RunComponent implements OnInit {
     else {
       this.pause();
     }
+  }
 
+  up(i: number) {
+    if (this.subjecstArr[i - 1]) {
+      let keeper = this.subjecstArr[i - 1];
+      this.subjecstArr[i - 1] = this.subjecstArr[i];
+      this.subjecstArr[i] = keeper;
+    }
+  }
+  down(i: number) {
+    if (this.subjecstArr[i + 1]) {
+      let keeper = this.subjecstArr[i + 1];
+      this.subjecstArr[i + 1] = this.subjecstArr[i];
+      this.subjecstArr[i] = keeper;
+    }
   }
 
 

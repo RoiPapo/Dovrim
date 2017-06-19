@@ -2,37 +2,30 @@
     <h1>יצירת דיון חדש</h1>
 </div>
 <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
-    <div class="col-xs-6 pull-right  ">
+    <div class="col-xs-12 pull-right  ">
 
         <div class="form-group ">
-
-            <label for="disscussionName" style="font-size: 150%">שם הדיון</label>
-            <input type="text" class="form-control" formControlName="discussionName" tabindex="1">
-            <small *ngIf="!myForm.controls.discussionName.valid&&myForm.controls.discussionName.touched" class="text-danger">
+            <div class="col-xs-6 pull-right  ">
+                <label for="disscussionName" style="font-size: 150%">שם הדיון</label>
+                <input type="text" class="form-control" formControlName="discussionName" tabindex="1">
+                <small *ngIf="!myForm.controls.discussionName.valid&&myForm.controls.discussionName.touched" class="text-danger">
      יש להכניס שם דיון
             </small>
+            </div>
+            <br/><br/><br/><br/><br/>
             <ul class="pager pull-right">
                 <li><a (click)="addLink()">הוסף נושא+</a></li>
             </ul>
             <br/><br/><br/><br/>
             <div formArrayName="subjects">
-                <div *ngFor="let subject of myForm.controls.subjects.controls; let i=index">
+                <div *ngFor="let subject of myForm.controls.subjects.controls; let i=index" class="aligner">
 
 
 
-                    <div [formGroupName]="i" >
-                        <div class="form-group col-xs-4">
-                            <label>אורך בדקות</label>
-                            <span class="glyphicon glyphicon-remove " *ngIf="myForm.controls.subjects.controls.length > 1" (click)="removesubjects(i)"></span>
-                            <input type="text" class="form-control" formControlName="subjectTime" [tabindex]="(i*2)+3">
-                            <small *ngIf="myForm.controls.subjects.controls[i].controls.subjectTime.touched" [hidden]="myForm.controls.subjects.controls[i].controls.subjectTime.valid"
-                                class="text-danger">
-                                        יש להכניס מספר 
-                </small>
+                    <div [formGroupName]="i">
 
 
-                        </div>
-                        <div class="form-group col-xs-8">
+                        <div class="form-group col-xs-4 pull-right">
                             <label>שם הנושא</label>
                             <input type="text" class="form-control" formControlName="subjectName" [tabindex]="(i*2)+2">
                             <small *ngIf="myForm.controls.subjects.controls[i].controls.subjectName.touched" [hidden]="myForm.controls.subjects.controls[i].controls.subjectName.valid"
@@ -40,7 +33,35 @@
                                         יש להכניס נושא לדיון 
                 </small>
                         </div>
+
+
+
+
+                        <div class="form-group col-xs-2 pull-right">
+                            <label>אורך בדקות</label>
+                            <input type="text" class="form-control " id="timeinput" formControlName="subjectTime" [tabindex]="(i*2)+3">
+                            <small *ngIf="myForm.controls.subjects.controls[i].controls.subjectTime.touched" [hidden]="myForm.controls.subjects.controls[i].controls.subjectTime.valid"
+                                class="text-danger">
+                                        יש להכניס מספר 
+                </small>
+                        </div>
+
+                        <div class="form-group col-xs-3 pull-right ">
+                            <label>דובר</label>
+                             <div class="pull-left">   
+                            <span class="glyphicon glyphicon-remove " *ngIf="myForm.controls.subjects.controls.length > 1" (click)="removesubjects(i)"></span>
+                          </div>
+                            <input type="text" class="form-control" id="speakerinput" formControlName="subjectSpeaker" [tabindex]="(i*2)+4">
+                            <small *ngIf="myForm.controls.subjects.controls[i].controls.subjectSpeaker.touched" [hidden]="myForm.controls.subjects.controls[i].controls.subjectSpeaker.valid"
+                                class="text-danger">
+                                        יש להכניס שם 
+                </small>
+
+
+                        </div>
+
                     </div>
+                    <br/><br/><br/><br/><br/>
                 </div>
 
             </div>

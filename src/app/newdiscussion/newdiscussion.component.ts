@@ -19,7 +19,7 @@ export class NewdiscussionComponent implements OnInit {
     myForm: FormGroup;
     urlParams: string;
     editMode: boolean = false;
-    tabHelper: number = 0;
+ 
 
 
     constructor(private _fb: FormBuilder,
@@ -66,7 +66,8 @@ export class NewdiscussionComponent implements OnInit {
     initSubject() {
         return this._fb.group({
             subjectName: ['', Validators.required],
-            subjectTime: ['', [Validators.required, Validators.pattern("([0-9]+(\.[0-9][0-9]?))|([1-9][0-9]*)")]]
+            subjectTime: ['', [Validators.required, Validators.pattern("([0-9]+(\.[0-9][0-9]?))|([1-9][0-9]*)")]],
+            subjectSpeaker: ['', Validators.required]
         });
     }
 
