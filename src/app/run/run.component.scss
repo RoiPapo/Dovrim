@@ -1,7 +1,7 @@
 .centering {
     display: block;
     margin: auto;
-    width: 370px;
+    width: 120px;
 }
 
 .greenytitle
@@ -39,7 +39,7 @@ float: right
 }
 
 .demo .large-header {
-   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
+   background-image: url("/assets/demo-bg.jpg");
    
 }
 
@@ -130,3 +130,12 @@ a{font-size:12px; font-weight:bold; margin-top:10px; display:inline-block; text-
   }
 }
  
+ #Skiper {
+   background-image: url("/assets/skip1.png");
+   height: 71px;
+   width: 72px;
+}
+
+#Skiper:hover {
+   background-image: url("/assets/skip2.png ");
+}

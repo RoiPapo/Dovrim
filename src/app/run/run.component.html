@@ -6,30 +6,42 @@
             <h1 class="main-title3">{{discussionNow.subject[clockPointer].subjectName}}</h1>
             <h1 class="main-title2">{{secondsToMinutes(presentedTime)}}</h1>
             <div class="centering">
-                <img src="./assets/play.png " width="120px" (click)="play()">
+                <!--<img src="./assets/play.png " width="120px" (click)="play()">
                 <img src="./assets/skip.png" width="120px" (click)="skip(0)">
-                <img src="./assets/pause.png" width="120px" (click)="pause()">
-                <div id="main-content">
-                    <div>
-                        <input (change)="toggleTimer($event)" type="checkbox" id="checkbox" />
-                        <!-- Only to prevent the need to use JS to toggle the button change -->
-                        <label for="checkbox" id="action-button">
+                <img src="./assets/pause.png" width="120px" (click)="pause()">-->
+
+                <table>
+                    <tr>
+                        <td>
+                            <div id="main-content">
+                                <div>
+                                    <input (change)="toggleTimer($event)" type="checkbox" id="checkbox" />
+                                    <!-- Only to prevent the need to use JS to toggle the button change -->
+                                    <label for="checkbox" id="action-button">
+                            
       <div></div>
     </label>
-                    </div>
-                </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="Skiper" (click)="skip(0)"></div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-
         </div>
     </div>
 
+
+
     <div class="container2">
-        <div class="glyphicon glyphicon-chevron-left greenytitle2"></div>
+        <!--<div class="glyphicon glyphicon-chevron-left greenytitle2"></div>
         <div class="greenytitle" id="current subject">{{discussionNow.subject[clockPointer].subjectName}}</div>
-        <br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/>-->
         <img *ngIf="isCollapsed; else closepanel" src="./assets/openEdit.png " (click)="isCollapsed = !isCollapsed">
         <ng-template #closepanel>
-            <img src="./assets/closeEdit.png " (click)="isCollapsed = !isCollapsed">
+            <img src="./assets/closeEdit.png" (click)="isCollapsed = !isCollapsed">
         </ng-template>
     </div>
     <div [collapse]="isCollapsed" class="card card-block card-header">

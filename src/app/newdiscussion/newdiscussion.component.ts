@@ -19,6 +19,7 @@ export class NewdiscussionComponent implements OnInit {
     myForm: FormGroup;
     urlParams: string;
     editMode: boolean = false;
+    tabHelper: number = 0;
 
 
     constructor(private _fb: FormBuilder,
@@ -65,7 +66,7 @@ export class NewdiscussionComponent implements OnInit {
     initSubject() {
         return this._fb.group({
             subjectName: ['', Validators.required],
-            subjectTime: ['']
+            subjectTime: ['', [Validators.required, Validators.pattern("([0-9]+(\.[0-9][0-9]?))|([1-9][0-9]*)")]]
         });
     }
 
@@ -97,7 +98,7 @@ export class NewdiscussionComponent implements OnInit {
         for (let i = 0; i < subjNumber - 1; i++) {
             this.addLink();
         }
-           this.myForm.setValue({ discussionName: this.discussionNow.discussionName, subjects: this.discussionNow.subject });
+        this.myForm.setValue({ discussionName: this.discussionNow.discussionName, subjects: this.discussionNow.subject });
     }
 
 

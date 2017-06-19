@@ -21,7 +21,7 @@ export class RunComponent implements OnInit {
   subjecstArr: Subject[];
   clocksArr: number[] = [];
   presentedTime: number = 0;
-  isPaused: boolean = false;
+  isPaused: boolean = true;
 
   constructor(private requestService: RequestService,
     private activatedRoute: ActivatedRoute) { }
@@ -121,8 +121,13 @@ export class RunComponent implements OnInit {
   }
 
   skip(input) {
-    this.presentedTime = input;
-    if (this.isPaused == true) { this.clockPointer++ }
+    if (this.clocksArr[this.clockPointer + 1]) {
+      this.presentedTime = input;
+      if (this.isPaused == true) {
+        this.clockPointer++;
+        this.presentedTime = this.clocksArr[this.clockPointer] * 60;
+      }
+    }
   }
 
   pause() {
