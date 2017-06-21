@@ -21,7 +21,10 @@ export class RunComponent implements OnInit {
   subjecstArr: Subject[];
   presentedTime: number = 0;
   isPaused: boolean = true;
-  totalTime: string ;
+  totalTime: string;
+  isMuted: boolean = false;
+
+
   constructor(private requestService: RequestService,
     private activatedRoute: ActivatedRoute) { }
 
@@ -80,8 +83,11 @@ export class RunComponent implements OnInit {
     for (let subject of this.discussionNow.subject) {
       counter += + subject.subjectTime;
     }
-    this.totalTime="אורך הדיון: " + Math.round(counter) + " דקות";
+    this.totalTime = "אורך הדיון: " + Math.round(counter) + " דקות";
   }
+
+
+
 
   play() {
     let that = this;
@@ -94,6 +100,7 @@ export class RunComponent implements OnInit {
       }
       that.presentedTime--;
       if (that.presentedTime == -1) {
+        that.ringBell();
         clearInterval(interval);
         that.ifNextClock();
         if (that.presentedTime == -1) { that.presentedTime++ }
@@ -130,7 +137,7 @@ export class RunComponent implements OnInit {
 
   pause() {
     this.isPaused = true;
-    this.subjecstArr[this.clockPointer].subjectTime = Math.floor((this.presentedTime / 60)*100)/100;
+    this.subjecstArr[this.clockPointer].subjectTime = Math.floor((this.presentedTime / 60) * 100) / 100;
 
   }
 
@@ -150,20 +157,42 @@ export class RunComponent implements OnInit {
   }
 
   up(i: number) {
-    if (this.subjecstArr[i - 1]) {
+    if (this.subjecstArr[i - 1] && this.clockPointer == i - 2) {
       let keeper = this.subjecstArr[i - 1];
       this.subjecstArr[i - 1] = this.subjecstArr[i];
       this.subjecstArr[i] = keeper;
     }
+    else {
+      alert("לא ניתן להחליף דיון פעיל  / פעולה בלתי חוקית");
+    }
   }
   down(i: number) {
-    if (this.subjecstArr[i + 1]) {
+    if (this.subjecstArr[i + 1] && this.clockPointer == i - 1) {
       let keeper = this.subjecstArr[i + 1];
       this.subjecstArr[i + 1] = this.subjecstArr[i];
       this.subjecstArr[i] = keeper;
     }
+    else {
+      alert("לא ניתן להחליף דיון פעיל  / פעולה בלתי חוקית");
+    }
   }
 
+  ringBell() {
+    if(!this.isMuted){
+    var audio = new Audio();
+    audio.src = "http://localhost:4200/assets/Bell.mp3";
+    audio.load();
+    audio.play();
+    }
+  }
+
+  mute() {
+    this.isMuted = true;
+  }
+
+  unMute() {
+    this.isMuted = false;
+  }
 
 }
 

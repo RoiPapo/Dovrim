@@ -20,7 +20,7 @@
 .glyphicon-remove:before {
 
     content: "\E014";
-    margin-left: 80px
+  
 
 }
 
@@ -38,4 +38,8 @@
 
 #speakerinput{
     width: 140px
-}
+    }
+
+    #pullaLittle{
+        margin-left: -36px;
+    }

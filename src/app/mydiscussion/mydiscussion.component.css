@@ -118,3 +118,14 @@ td.text-center {
 td.text-right {
   text-align: right;
 }
+
+.modal-body {
+    height: 110px;
+      text-align: right;
+}
+.modal-content{
+  color:grey;
+}
+.btn-default{
+  margin-left: 5px;
+}

@@ -162,3 +162,22 @@ a{font-size:12px; font-weight:bold; margin-top:10px; display:inline-block; text-
   margin-top: -50px;
   margin-left: 12px;
 }
+.rightPannel{
+   position: absolute;
+   top: 100px;
+   right: 6px;
+   max-width: 210px ;        
+}
+
+.greenynow{
+  color: green;
+  font-weight:bold;
+}
+
+.muteLogo{
+  float: right;
+}
+
+#TimeInput{
+width:60px; text-align: center;
+}

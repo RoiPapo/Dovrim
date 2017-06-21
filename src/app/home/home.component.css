@@ -3,10 +3,25 @@
     margin: auto;
     width: 50%;
 }
-p{
+.p1{
 text-align: center;
     width: 100%;
     font-weight: bold;
     font-size: 24px;
 }
+.p2{
+text-align: center;
+    width: 100%;
+    font-size: 20px;
+}
 
+.yesodot{
+    position: absolute;
+    bottom: 0;
+}
+.batelfield{
+    float: left;
+    position: absolute;
+    bottom: 0;
+    left:16%;
+}

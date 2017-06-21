@@ -4,7 +4,8 @@ import { Discussion } from '../discussion.model';
 import { RequestService } from '../requests.service';
 import { EmitterService } from '../emitter.service';
 import { DiscussionPasserService } from '../discussionPasser.service';
-import { Router ,ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-mydiscussion',
@@ -16,12 +17,12 @@ export class MydiscussionComponent implements OnInit {
   discussions: Discussion[];
 
   constructor(private requestService: RequestService,
-   private discussionPasserService:DiscussionPasserService,
-   private router:Router,
-   ) { 
+    private discussionPasserService: DiscussionPasserService,
+    private router: Router
+  ) {
     // this.discussionPasserService.discussionPicked.subscribe(
     //   (selectedDiscussion: Discussion) => console.log(selectedDiscussion));
-   }
+  }
 
 
   // @Output() selectedDiscussionToRun = new EventEmitter<Discussion>();
@@ -39,7 +40,7 @@ export class MydiscussionComponent implements OnInit {
     this.requestService.getDiscussions()
       .subscribe(
       discussions => this.discussions = discussions,
-      
+
       // discussions => console.log(discussions),
       err => {
         console.log(err)
@@ -53,22 +54,22 @@ export class MydiscussionComponent implements OnInit {
   runDiscussion(discussionNum: number) {
     // this.selectedDiscussionToRun.emit(this.discussions[discussionNum]);
     // this.discussionPasserService.discussionPicked.emit(this.discussions[discussionNum]);
-    this.router.navigate(['run',this.discussions[discussionNum]._id]);
+    this.router.navigate(['run', this.discussions[discussionNum]._id]);
   }
   removeDiscussion(discussionNum: number) {
-    
-   this.requestService.deleteDiscussion(this.discussions[discussionNum]._id).subscribe(
-     flag=>{ this.loadDiscussions();
+    this.requestService.deleteDiscussion(this.discussions[discussionNum]._id).subscribe(
+      flag => {
+        this.loadDiscussions();
 
 
-     }
+      }
 
-     
-   )
+
+    )
   }
   editDiscussion(discussionNum: number) {
     this.discussionPasserService.discussionPicked.emit(this.discussions[discussionNum].discussionName);
-    this.router.navigate(['edit',this.discussions[discussionNum]._id]);
+    this.router.navigate(['edit', this.discussions[discussionNum]._id]);
   }
 
 

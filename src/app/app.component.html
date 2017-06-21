@@ -6,18 +6,11 @@
   <app-mydiscussion *ngIf="loadedFeature === 'myDiscussion'"> </app-mydiscussion>
   <app-newdiscussion *ngIf="loadedFeature === 'newDiscussion'"> </app-newdiscussion>
 
-  
+
  
 </div>
 <div class="col-sm-1" id="backgroundside"></div>-->
 <div class="container">
-    <!--<app-home *ngIf="loadedFeature === 'home'"> </app-home>
-    <app-mydiscussion *ngIf="loadedFeature === 'myDiscussion'" 
-    (selectedDiscussionToEdit)="onEdit($event.discussions,$event.flag)"
-    (selectedDiscussionToRun)="onRun($event)"
-    
-    > </app-mydiscussion>
-    <app-newdiscussion *ngIf="loadedFeature === 'newDiscussion'"[selectedDiscussion]="selectedDiscussion"[editFlag]="editFlag"> </app-newdiscussion>
-    <app-run *ngIf="loadedFeature === 'run'"[selectedDiscussion]="selectedDiscussion"> </app-run>-->
+<app-analog-clock></app-analog-clock>
     <router-outlet></router-outlet>
 </div>

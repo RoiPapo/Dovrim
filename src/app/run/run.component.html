@@ -2,6 +2,8 @@
 <ng-template #discussionPanel>
     <div class=" demo" id="the header pannel">
         <div id="large-header" class="large-header">
+            <img *ngIf="!isMuted" src="..\assets\notmuted.png" (click)="mute()" class="muteLogo" width="35px">
+            <img *ngIf="isMuted" src="..\assets\muted.png" (click)="unMute()" class="muteLogo" width="35px">
             <h1 class="main-title">{{discussionNow.discussionName}}</h1>
             <h1 class="main-title3">{{discussionNow.subject[clockPointer].subjectName}}</h1>
             <h1 class="main-title2">{{secondsToMinutes(presentedTime)}}</h1>
@@ -29,8 +31,8 @@
                     </tr>
                 </table>
             </div>
-            <h1 class="main-title4" id="speaker">דובר:{{discussionNow.subject[clockPointer].subjectSpeaker}}</h1>
-             <h1 class="main-title4" id="totalTime">{{totalTime}}</h1>
+            <h1 class="main-title4" id="speaker">דובר: {{discussionNow.subject[clockPointer].subjectSpeaker}}</h1>
+            <h1 class="main-title4" id="totalTime">{{totalTime}}</h1>
         </div>
     </div>
 
@@ -49,7 +51,7 @@
         <table style=" font-size: 24px;">
             <tr *ngFor="let subject of subjecstArr; let i = index">
                 <td style="padding-left: 20px;">{{i+1}}. {{discussionNow.subject[i].subjectName}} </td>
-                <td> <input (blur)=update(i,$event) id="TimeInput" style="width:50px" type="text" value="{{discussionNow.subject[i].subjectTime}}"></td>
+                <td> <input (blur)=update(i,$event) id="TimeInput" type="text" value="{{discussionNow.subject[i].subjectTime}}"></td>
                 <td style="padding-right: 20px;"> דובר: {{discussionNow.subject[i].subjectSpeaker}} </td>
                 <td style="padding-right: 20px;">
                     <div class="glyphicon glyphicon-chevron-up" (click)="up(i)"></div>
@@ -60,5 +62,20 @@
             </tr>
         </table>
     </div>
+
+    <div class="rightPannel">
+        <table style=" font-size: 21px;">
+            <tr style="color:#19317f;font-size: 24px; ">
+                <ins><b>נושאים לדיון</b></ins>
+            </tr>
+            <tr *ngFor="let subject of subjecstArr; let i = index">
+                <td style="padding-left: 20px;">
+                    <div [ngClass]="{greenynow:clockPointer==i}">- {{discussionNow.subject[i].subjectName}}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
 
 </ng-template>

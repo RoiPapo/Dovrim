@@ -14,12 +14,31 @@
         <a (click)="runDiscussion(i)">
           <span class="glyphicon glyphicon-play"></span>
         </a> &nbsp;
-        <a (click)="removeDiscussion(i)">
+        <a (click)="staticModal.show()">
          <span class="glyphicon glyphicon-remove"></span>
         </a> &nbsp;
         <a (click)="editDiscussion(i)">
          <span class="glyphicon glyphicon-pencil"></span>
         </a>
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-right">מחיקת דיון</h4>
+        <button type="button" class="close pull-left" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+האם אתה בטוח שברצונך למחוק את הדיון לצמיתות?
+<br/>
+<button type="button" class="btn btn-primary pull-left" (click)="removeDiscussion(i)">מחק</button>
+<button type="button" class="btn btn-default pull-left" (click)="staticModal.hide()">בטל</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       </td>
     </tr>
@@ -27,4 +46,6 @@
 
   </tbody>
 </table>
+
+
 </div>

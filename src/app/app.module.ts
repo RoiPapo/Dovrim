@@ -13,6 +13,8 @@ import { DiscussionPasserService } from './discussionPasser.service';
 import { HomeComponent } from './home/home.component';
 import {Routes, RouterModule} from "@angular/router";
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AnalogClockComponent } from './analog-clock/analog-clock.component';
 
 const appRoutes: Routes=[
   {path:'',component:HomeComponent},
@@ -29,7 +31,8 @@ const appRoutes: Routes=[
     MydiscussionComponent,
     NewdiscussionComponent,
     RunComponent,
-    HomeComponent
+    HomeComponent,
+    AnalogClockComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ const appRoutes: Routes=[
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     EmitterService,
