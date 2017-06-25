@@ -22,7 +22,10 @@ export class RunComponent implements OnInit {
   presentedTime: number = 0;
   isPaused: boolean = true;
   totalTime: string;
-  isMuted: boolean = false;
+  isMuted: boolean = true;
+  automaticMode: boolean = false;
+  timesUp: boolean = false;
+  isSkippedHandleMode: boolean = false;
 
 
   constructor(private requestService: RequestService,
@@ -91,6 +94,7 @@ export class RunComponent implements OnInit {
 
   play() {
     let that = this;
+    this.timesUp = false;
     this.isPaused = false;
     this.presentedTime = Math.round(this.subjecstArr[this.clockPointer].subjectTime * 60);
     var interval = setInterval(function () {
@@ -100,15 +104,51 @@ export class RunComponent implements OnInit {
       }
       that.presentedTime--;
       if (that.presentedTime == -1) {
-        that.ringBell();
         clearInterval(interval);
-        that.ifNextClock();
-        if (that.presentedTime == -1) { that.presentedTime++ }
+        if (that.automaticMode || this.isSkippedHandleMode == true) {
+          that.ringBell();
+          that.ifNextClock();
+          if (that.presentedTime == -1) { that.presentedTime++ }
+        }
+        else {
+          if (that.presentedTime == -1) { that.presentedTime++ }
+          that.timeExceeded();
+          
+          //  this.timesUp = false;
+        }
       }
     }, 1000)
   }
 
+  skip(input) {
+    if (this.subjecstArr[this.clockPointer + 1]) {
+      if (this.automaticMode) {// for automatic mode
+        this.presentedTime = input;
+        if (this.isPaused == true) {
+          this.clockPointer++;
+          this.presentedTime = this.subjecstArr[this.clockPointer].subjectTime * 60;
+        }
+      }
+      else {// for handy mode
+        if (this.timesUp) {
+          this.isPaused = true;
+          this.isSkippedHandleMode == false;
+        }
+        else {
+          this.isSkippedHandleMode = true;
+          this.presentedTime = input;
+          this.clockPointer++;
+          this.presentedTime = this.subjecstArr[this.clockPointer].subjectTime * 60;
+
+        }
+      }
+    }
+  }
+
+
+
   ifNextClock() {
+    console.log("1wsfdf");
     if (this.subjNum > this.clockPointer + 1) {
       this.clockPointer++;
       this.play();
@@ -125,15 +165,7 @@ export class RunComponent implements OnInit {
     return result;
   }
 
-  skip(input) {
-    if (this.subjecstArr[this.clockPointer + 1]) {
-      this.presentedTime = input;
-      if (this.isPaused == true) {
-        this.clockPointer++;
-        this.presentedTime = this.subjecstArr[this.clockPointer].subjectTime * 60;
-      }
-    }
-  }
+
 
   pause() {
     this.isPaused = true;
@@ -178,11 +210,11 @@ export class RunComponent implements OnInit {
   }
 
   ringBell() {
-    if(!this.isMuted){
-    var audio = new Audio();
-    audio.src = "http://localhost:4200/assets/Bell.mp3";
-    audio.load();
-    audio.play();
+    if (!this.isMuted) {
+      var audio = new Audio();
+      audio.src = "http://localhost:4200/assets/Bell.mp3";
+      audio.load();
+      audio.play();
     }
   }
 
@@ -193,6 +225,28 @@ export class RunComponent implements OnInit {
   unMute() {
     this.isMuted = false;
   }
+
+  timeExceeded() {//time counter to tell the speaker that times up
+    let that = this;
+    this.timesUp = true;
+    var interval = setInterval(function () {
+      that.presentedTime++;
+      if (that.isPaused) {
+        clearInterval(interval);
+        that.ifNextClock();
+      }
+    }, 1000)
+  }
+
+  changeMode() {
+    if (this.automaticMode) {
+      this.automaticMode = false;
+    }
+    else {
+      this.automaticMode = true;
+    }
+  }
+
 
 }
 
