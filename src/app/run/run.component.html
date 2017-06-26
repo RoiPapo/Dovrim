@@ -1,6 +1,6 @@
 <div *ngIf="!discussionNow._id; else discussionPanel">loading</div>
 <ng-template #discussionPanel>
-    <div class=" demo" id="the header pannel">
+    <div class=" demo" id="theHeaderPannel">
         <div id="large-header" class="large-header">
              <img *ngIf="automaticMode" src="..\assets\automatic.png" (click)="changeMode()" class=" pull-left" width="180px">
             <img *ngIf="!automaticMode" src="..\assets\yadani.png" (click)="changeMode()" class=" pull-left" width="180px">
@@ -8,18 +8,18 @@
             <img *ngIf="isMuted" src="..\assets\muted.png" (click)="unMute()" class="muteLogo" width="35px">
             <h1 class="main-title">{{discussionNow.discussionName}}</h1>
             <h1 class="main-title3">{{discussionNow.subject[clockPointer].subjectName}}</h1>
-            <h1 class="main-title2" >{{secondsToMinutes(presentedTime)}}</h1>
+            <h1 [ngClass]="{'main-title2': !timesUp, 'main-title5': timesUp}" >{{secondsToMinutes(presentedTime)}}</h1>
             <div class="centering">
                 <!--<img src="./assets/play.png " width="120px" (click)="play()">
                 <img src="./assets/skip.png" width="120px" (click)="skip(0)">
                 <img src="./assets/pause.png" width="120px" (click)="pause()">-->
 
-                <table>
+                <table style="margin-top: 1.5vh;">
                     <tr>
-                        <td style="width: 74px;">
-                            <div  *ngIf="!timesUp" id="main-content">
-                                <div>
-                                    <input (change)="toggleTimer($event)" type="checkbox" id="checkbox" />
+                        <td style="width: 74px; ">
+                            <div [ngClass]="{'disapear': timesUp}" id="main-content">
+                                <div >
+                                    <input #playPause (change)="toggleTimer($event)" type="checkbox" id="checkbox" />
                                     <!-- Only to prevent the need to use JS to toggle the button change -->
                                     <label for="checkbox" id="action-button">
                                   <div></div>
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-
+   <div id="wrapper"> 
 
     <div class="container2">
         <!--<div class="glyphicon glyphicon-chevron-left greenytitle2"></div>
@@ -64,7 +64,7 @@
             </tr>
         </table>
     </div>
-
+   </div>
     <div class="rightPannel">
         <table style=" font-size: 21px;">
             <tr style="color:#19317f;font-size: 24px; ">

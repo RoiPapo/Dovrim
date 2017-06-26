@@ -48,7 +48,7 @@ float: right
 text-align: center;
 color: #F9F1E9;
 margin: auto;
-margin-right: 200px;
+
 
 
 }
@@ -63,14 +63,16 @@ margin: auto;
 }
 .main-title2 {
    //position: absolute;
-text-align: center;
-color: #F9F1E9;
-margin: auto;
-font-size: 32vh;
-font-weight: bold;
+  margin-top: -6vh!important;
+  text-align: center;
+  color: #F9F1E9;
+  margin: auto;
+  font-size: 32vh;
+  font-weight: bold;
 
 
 }
+
 
 .main-title3 {
    //position: absolute;
@@ -91,6 +93,17 @@ font-size: 36px;
 
 
 }
+.main-title5 {
+   //position: absolute;
+     margin-top: -6vh!important;
+text-align: center;
+color: orangered;
+margin: auto;
+font-size: 32vh;
+font-weight: bold;
+
+
+}
 
 .demo .main-title {
    text-transform: uppercase;
@@ -102,18 +115,25 @@ font-size: 36px;
    font-weight: 200;
 }
 
-.container2{
- width: 100%;
-overflow-x: hidden;
-padding-right: 20px;
- 
+#theHeaderPannel{
+
 }
 
-body{margin:0; padding:0; -webkit-font-smoothing: antialiased; font-family:arial;}
+.container2{
+ width: 100%;
+padding-right: 20px;
+
+
+}
+
+body{margin:0; padding:0; -webkit-font-smoothing: antialiased; font-family:arial; }
 
 label{margin:0 auto;}
 
-//#main-content{display:flex; width:100vw; height:100vh; background:white; align-items:center; justify-content:center; text-align:center;}
+#main-content{
+
+
+  }
 
 h1{font-size:14px; font-weight:400; margin:20px 0 0 0; color:#888888;}
 
@@ -144,6 +164,7 @@ a{font-size:12px; font-weight:bold; margin-top:10px; display:inline-block; text-
    background-image: url("/assets/skip1.png");
    height: 71px;
    width: 72px;
+   cursor: pointer; cursor: hand;
 }
 
 #Skiper:hover {
@@ -182,3 +203,15 @@ a{font-size:12px; font-weight:bold; margin-top:10px; display:inline-block; text-
 #TimeInput{
 width:60px; text-align: center;
 }
+  #wrapper {
+   height: 20%;
+   width: 100%;
+   overflow: auto;
+}
+
+.disapear{
+  visibility:hidden;
+}
+
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { Discussion } from '../discussion.model'
 import { Subject } from '../subject.model'
 import { RequestService } from '../requests.service';
@@ -13,6 +13,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 export class RunComponent implements OnInit {
   //@Input("selectedDiscussion") discussionNow: Discussion;
 
+  @ViewChild('playPause') playPause;
 
   isCollapsed: boolean = true;
   discussionNow: Discussion = { _id: null, discussionName: "", subject: [] };
@@ -93,8 +94,11 @@ export class RunComponent implements OnInit {
 
 
   play() {
+
     let that = this;
     this.timesUp = false;
+    //  if(this.playPause){
+    //       this.playPause.nativeElement.checked = true;}
     this.isPaused = false;
     this.presentedTime = Math.round(this.subjecstArr[this.clockPointer].subjectTime * 60);
     var interval = setInterval(function () {
@@ -113,8 +117,7 @@ export class RunComponent implements OnInit {
         else {
           if (that.presentedTime == -1) { that.presentedTime++ }
           that.timeExceeded();
-          
-          //  this.timesUp = false;
+
         }
       }
     }, 1000)
@@ -148,7 +151,6 @@ export class RunComponent implements OnInit {
 
 
   ifNextClock() {
-    console.log("1wsfdf");
     if (this.subjNum > this.clockPointer + 1) {
       this.clockPointer++;
       this.play();
@@ -189,7 +191,7 @@ export class RunComponent implements OnInit {
   }
 
   up(i: number) {
-    if (this.subjecstArr[i - 1] && this.clockPointer == i - 2) {
+    if (this.subjecstArr[i - 1] && this.clockPointer != i - 1) {
       let keeper = this.subjecstArr[i - 1];
       this.subjecstArr[i - 1] = this.subjecstArr[i];
       this.subjecstArr[i] = keeper;
@@ -199,7 +201,7 @@ export class RunComponent implements OnInit {
     }
   }
   down(i: number) {
-    if (this.subjecstArr[i + 1] && this.clockPointer == i - 1) {
+    if (this.subjecstArr[i + 1] && this.clockPointer != i + 1) {
       let keeper = this.subjecstArr[i + 1];
       this.subjecstArr[i + 1] = this.subjecstArr[i];
       this.subjecstArr[i] = keeper;
@@ -220,10 +222,12 @@ export class RunComponent implements OnInit {
 
   mute() {
     this.isMuted = true;
+
   }
 
   unMute() {
     this.isMuted = false;
+
   }
 
   timeExceeded() {//time counter to tell the speaker that times up
